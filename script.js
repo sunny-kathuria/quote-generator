@@ -10,12 +10,17 @@ const copyBtn=document.querySelector("#copy-quote");
 function newQuote(){
     let quoteNumber= Math.floor(Math.random()*apiQuotes.length)
     quote.textContent=apiQuotes[quoteNumber]['text'];
+  
+    
     if(apiQuotes[quoteNumber]['author']==null){
+       
         author.textContent="Unknown";
     }
     else{
     author.textContent=apiQuotes[quoteNumber]['author'];  
     }
+    
+    
 
 }
 
