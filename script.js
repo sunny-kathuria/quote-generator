@@ -1,15 +1,28 @@
 let apiQuotes=[];
-let quote=document.querySelector("#quote")
-let author=document.querySelector("#author")
-let newQuoteBtn=document.querySelector("#new-quote")
+const quote=document.querySelector("#quote")
+const author=document.querySelector("#author")
+const newQuoteBtn=document.querySelector("#new-quote")
+const twitterBtn=document.querySelector("#twitter");
+const copyBtn=document.querySelector("#copy-quote");
 // Get quotes
 
 
 function newQuote(){
     let quoteNumber= Math.floor(Math.random()*apiQuotes.length)
     quote.textContent=apiQuotes[quoteNumber]['text'];
+    if(apiQuotes[quoteNumber]['author']==null){
+        author.textContent="Unknown";
+    }
+    else{
     author.textContent=apiQuotes[quoteNumber]['author'];  
+    }
+
 }
+
+function copyQuote(){
+    navigator.clipboard.writeText(`${quote.textContent}  -${author.textContent}`);
+}
+
 
 async function getQuotes(){
     const apiUrl="https://type.fit/api/quotes"
@@ -30,5 +43,5 @@ async function getQuotes(){
 
 getQuotes();
 
-
+copyBtn.addEventListener("click",copyQuote);
 newQuoteBtn.addEventListener("click",newQuote);
